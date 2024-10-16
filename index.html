@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components in React</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- React and Babel CDN links -->
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="text/babel">
+        // Step Component
+        function Step({ stepNumber, stepTitle, stepDescription }) {
+            return (
+                <div style={{ border: "1px solid #ccc", margin: "10px 0", padding: "10px" }}>
+                    <h2>Step {stepNumber}: {stepTitle}</h2>
+                    <p>{stepDescription}</p>
+                </div>
+            );
+        }
+
+        // StepsList Component
+        function StepsList() {
+            const steps = [
+                {
+                    number: 1,
+                    title: "Find your template",
+                    description: "Every template is embedded within an iframe, so you can easily check what they look like and test the responsive behavior."
+                },
+                {
+                    number: 2,
+                    title: "Copy the code",
+                    description: "Click the code tab to see the actual source code of the template. Copy and paste it into your project and adjust it to your needs."
+                },
+                {
+                    number: 3,
+                    title: "Enjoy your free time",
+                    description: "You've just saved yourself a bunch of time not building the same stuff over and over again. Enjoy your free time and build business features."
+                }
+            ];
+
+            return (
+                <div>
+                    {steps.map(step => (
+                        <Step
+                            key={step.number}
+                            stepNumber={step.number}
+                            stepTitle={step.title}
+                            stepDescription={step.description}
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        // Main App Component
+        function App() {
+            return (
+                <div>
+                    <h1>Getting started in 3 easy steps</h1>
+                    <StepsList />
+                </div>
+            );
+        }
+
+        // Rendering the App
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
